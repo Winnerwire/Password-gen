@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0">
+	<title><p><h1>Media Vine</h1>Strong Password Generator</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<style>
+		.error-message {
+			color: #e53e3e;
+		}
+	</style>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex 
+			flex-col justify-center items-center">
+	<div class="max-w-md w-full p-8 bg-white 
+				rounded-lg shadow-lg border-2 
+				border-green-400">
+		<h1 class="text-3xl font-semibold
+				text-center mb-8">
+<p>MediaVine</p>	Strong	Password Generator
+		</h1>
+		<div class="mb-4 flex flex-col">
+			<label for="length" class="mb-2">
+				Length:
+			</label>
+			<input type="number" id="length"
+				class="w-20 px-4 py-2 border 
+						border-gray-300 rounded-md 
+						focus:outline-none 
+						focus:border-blue-500"
+				min="4" max="20" value="8">
+			<p id="length-error" class="error-message hidden">
+				Please enter a length between 4 and 20.
+			</p>
+		</div>
+		<div class="mb-4 flex flex-col">
+			<label class="mb-2">Include:</label>
+			<label class="flex items-center mb-1">
+				<input type="checkbox" id="uppercase" class="mr-2">
+				Uppercase
+			</label>
+			<label class="flex items-center mb-1">
+				<input type="checkbox" id="lowercase" class="mr-2">
+				Lowercase
+			</label>
+			<label class="flex items-center mb-1">
+				<input type="checkbox" id="numbers" class="mr-2">
+				Numbers
+			</label>
+			<label class="flex items-center">
+				<input type="checkbox" id="symbols" class="mr-2">
+				Symbols
+			</label>
+		</div>
+		<div class="mb-8">
+			<button id="generate-btn"
+					class="px-6 py-3 bg-blue-500 text-white
+						rounded-md hover:bg-blue-600 
+						focus:outline-none">
+				Generate Password
+			</button>
+			<button id="copy-btn"
+					class="px-6 py-3 ml-4 bg-gray-500 
+						text-white rounded-md 
+						hover:bg-gray-600 
+						focus:outline-none">
+			Copy Password
+			</button>
+		</div>
+		<input type="text" id="password"
+			class="w-full px-4 py-2 border border-gray-300
+					rounded-md focus:outline-none 
+					focus:border-blue-500 text-center
+					text-xl font-semibold mb-4"
+				readonly>
+	</div>
+	<script>
+		const showError = (element, message) => {
+			element.textContent = message;
+			element.classList.remove('hidden');
+		};
+		const hideError = (element) => {
+			element.textContent = '';
+			element.classList.add('hidden');
+		};
+		const generatePassword = () => {
+			const length = document.getElementById('length')
+								.value;
+			if (length === '' || length < 4 || length > 20) {
+				showError(document.getElementById('length-error'),
+					'Please enter a length between 4 and 20.');
+				return;
+			} else {
+				hideError(document.getElementById('length-error'));
+			}
+			const uppercase = document.getElementById('uppercase')
+									.checked;
+			const lowercase = document.getElementById('lowercase')
+									.checked;
+			const numbers = document.getElementById('numbers')
+									.checked;
+			const symbols = document.getElementById('symbols')
+									.checked;
+			let charset = '';
+			if (uppercase) charset += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+			if (lowercase) charset += 'abcdefghijklmnopqrstuvwxyz';
+			if (numbers) charset += '0123456789';
+			if (symbols) charset += '!@#$%^&*()-_+=/?';
+			let password = '';
+			for (let i = 0; i < length; i++) {
+				const randomIndex = Math.floor(Math.random() 
+											* charset.length);
+				password += charset[randomIndex];
+			}
+			document.getElementById('password')
+					.value = password;
+		};
+		document.getElementById('generate-btn')
+				.addEventListener('click', generatePassword);
+		document.getElementById('copy-btn')
+				.addEventListener('click', () => {
+				const passwordField = document.getElementById('password');
+				passwordField.select();
+				passwordField.setSelectionRange(0, 99999);
+				document.execCommand('copy');
+				alert('Password copied to clipboard!');
+			});
+	</script><script async="async" data-cfasync="false" src="//databoilrecommendation.com/89f1e40e0e6d7dcb91eb378512134e8a/invoke.js"></script>
+<div id="container-89f1e40e0e6d7dcb91eb378512134e8a"></div>
+</body>
+
+</html>
